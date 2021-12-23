@@ -3,3 +3,7 @@ header ul {
     margin: 0;
     padding: 0;
 }
+
+#high-scores {
+    display: none;
+}

@@ -2,6 +2,8 @@ var divEl = document.querySelector(".container");
 var buttonEl = document.querySelector(".start");
 var h1El = document.querySelector("h1");
 var pEl = document.querySelector("p");
+var highScoresEl = document.getElementById("view-high-scores");
+var highScoresDiv = document.getElementById("high-scores");
 
 var questions = [
     {
@@ -230,28 +232,70 @@ var questions = [
     }
 ]
 
+var answerQuestion = function(event) {
+    var answerClicked = event.target;
+    var correct = answerClicked.dataset.correct;
+    if (correct) {
+        console.log("You got it right!");
+    } else {
+        console.log("You got it wrong!");
+    }
+}
 
-const displayQuestionAndAnswer = function() {
+var displayQuestionAndAnswer = function() {
     for (var i = 0; i < questions.length; i++) {
         var questionAndAnswers = questions[i];
-        debugger;
         h1El.innerText = questionAndAnswers.question;
         questionAndAnswers.answers.forEach(answer => {
             var button = document.createElement('button')
             divEl.appendChild(button);
             button.innerText = answer.answer
-            button.addEventListener('click', function(event){
-                console.log(event.target);
-            });
+            button.addEventListener('click', answerQuestion);
         });
         
     }
 }
 
-const startQuiz = function() {
+var gameOver = function() {
+
+}
+
+var displayHighScores = function() {
+    // hide questions container div
+    if (divEl.style.display === "none") {
+        divEl.style.display = "block";
+    } else {
+        // show high scores
+        divEl.style.display = "none";
+        highScoresDiv.style.display = "block";
+    }
+}
+
+var startTimer = function() {
+    var minutes = 2;
+    var seconds = 60;
+    var timer = setInterval(function() {
+        var time = document.getElementById("timer");
+        time.innerHTML = `${minutes}:${seconds}`;
+        seconds --;
+        if (minutes <= 0 && seconds <= 0) {
+            time.innerHTML = "Time's up!";
+            clearInterval(timer);
+        }
+        if (seconds === 00) {
+            minutes --;
+            seconds = 60;
+        }
+       
+    }, 1000);
+}
+
+var startQuiz = function() {
     pEl.remove();
     buttonEl.remove();
     displayQuestionAndAnswer();
+    startTimer();
 }
 
 buttonEl.addEventListener('click', startQuiz);
+highScoresEl.addEventListener('click', displayHighScores);
