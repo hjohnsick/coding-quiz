@@ -4,6 +4,8 @@ var h1El = document.querySelector("h1");
 var pEl = document.querySelector("p");
 var highScoresEl = document.getElementById("view-high-scores");
 var highScoresDiv = document.getElementById("high-scores");
+var timeEl = document.getElementById("timer");
+var backButton = document.querySelector(".back");
 
 var questions = [
     {
@@ -267,19 +269,25 @@ var displayHighScores = function() {
     } else {
         // show high scores
         divEl.style.display = "none";
+        highScoresEl.style.display = "none";
+        timeEl.style.display = "none";
         highScoresDiv.style.display = "block";
     }
 }
 
 var startTimer = function() {
-    var minutes = 2;
+    timeEl.style.display = "block";
+    var minutes = 9;
     var seconds = 60;
     var timer = setInterval(function() {
-        var time = document.getElementById("timer");
-        time.innerHTML = `${minutes}:${seconds}`;
+        timeEl.innerHTML = `${minutes} minutes ${seconds} seconds`;
         seconds --;
+        if (minutes < 1) {
+            timeEl.innerHTML = `${seconds} seconds`;
+            timeEl.style.color = "#DE3163";
+        }
         if (minutes <= 0 && seconds <= 0) {
-            time.innerHTML = "Time's up!";
+            timeEl.innerHTML = "Time's up!";
             clearInterval(timer);
         }
         if (seconds === 00) {

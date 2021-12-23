@@ -1,9 +1,52 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #CCCCFF;
+}
+
+header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 header ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
+span:hover {
+ color:#DAF7A6;
+ cursor: pointer;
+}
+
+#timer{
+    display: none;
+}
+
 #high-scores {
     display: none;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+button:hover {
+    background-color: #DAF7A6;
+}
+
+button {
+    border-radius: 5px;
+    font-weight: bold;
 }
