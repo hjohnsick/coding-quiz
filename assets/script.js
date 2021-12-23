@@ -1,4 +1,9 @@
-const questions = [
+var divEl = document.querySelector(".container");
+var buttonEl = document.querySelector(".start");
+var h1El = document.querySelector("h1");
+var pEl = document.querySelector("p");
+
+var questions = [
     {
         question: 'What is the correct way to call the random method on the Math global object?',
         answers: [
@@ -224,3 +229,29 @@ const questions = [
         ]
     }
 ]
+
+
+const displayQuestionAndAnswer = function() {
+    for (var i = 0; i < questions.length; i++) {
+        var questionAndAnswers = questions[i];
+        debugger;
+        h1El.innerText = questionAndAnswers.question;
+        questionAndAnswers.answers.forEach(answer => {
+            var button = document.createElement('button')
+            divEl.appendChild(button);
+            button.innerText = answer.answer
+            button.addEventListener('click', function(event){
+                console.log(event.target);
+            });
+        });
+        
+    }
+}
+
+const startQuiz = function() {
+    pEl.remove();
+    buttonEl.remove();
+    displayQuestionAndAnswer();
+}
+
+buttonEl.addEventListener('click', startQuiz);
