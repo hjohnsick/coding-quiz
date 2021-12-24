@@ -12,6 +12,7 @@ var answerButton1 = document.getElementById("answer1");
 var answerButton2 = document.getElementById("answer2");
 var answerButton3 = document.getElementById("answer3");
 var answerButton4 = document.getElementById("answer4");
+var nextButton = document.getElementById("next");
 
 var questions = [
     {
@@ -255,6 +256,20 @@ var answerQuestion = function(event) {
 
     return highScore;
 }
+
+var id = 0;
+// Go to the next question when Next button is clicked
+nextButton.addEventListener("click", function() {
+    console.log(questions.length)
+    if (id < questions.length - 1) {
+        id++;
+        displayQuestionAndAnswer(id);
+    } else {
+        // display form to record name
+        questionAndAnswersDiv.style.display = "none";
+    }
+    console.log(id);
+});
 
 var displayQuestionAndAnswer = function(id) {
     // stop displaying welcome text
