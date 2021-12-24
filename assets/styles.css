@@ -21,15 +21,20 @@ header ul {
 span:hover {
  color:#DAF7A6;
  cursor: pointer;
+ font-family: 'Bungee', cursive;
+ font-size: 25px;
 }
 
-#timer{
+.hidden {
+    display: none;
+}
+/* #timer{
     display: none;
 }
 
 #high-scores {
     display: none;
-}
+} */
 
 h1 {
     font-family: 'Montserrat', sans-serif;
