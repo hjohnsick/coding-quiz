@@ -13,6 +13,8 @@ var answerButton2 = document.getElementById("answer2");
 var answerButton3 = document.getElementById("answer3");
 var answerButton4 = document.getElementById("answer4");
 var nextButton = document.getElementById("next");
+var formEl = document.querySelector("form");
+
 
 var questions = [
     {
@@ -267,6 +269,10 @@ nextButton.addEventListener("click", function() {
     } else {
         // display form to record name
         questionAndAnswersDiv.style.display = "none";
+        highScoresDiv.style.display = "block";
+        formEl.style.display = "block";
+        backButton.style.display = "none";
+        // add click event to submit form and display results
     }
     console.log(id);
 });
