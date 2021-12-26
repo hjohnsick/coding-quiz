@@ -14,7 +14,8 @@ var answerButton3 = document.getElementById("answer3");
 var answerButton4 = document.getElementById("answer4");
 var nextButton = document.getElementById("next");
 var formEl = document.querySelector(".form");
-
+var minutes = 9;
+var seconds = 60;
 
 var questions = [
     {
@@ -244,24 +245,6 @@ var goBack = function() {
     window.location.reload();
 }
 
-// var highScore = 0;
-// var answerQuestion = function(event) {
-//     debugger;
-//     var answerClicked = event.target;
-//     console.log(answerClicked);
-//     var correct = answerClicked.dataset.correct;
-//     if (correct) {
-//         // add one to the score
-//         console.log("you got it correct");
-//         highScore++;
-//     } else {
-//         // deduct one minute from the time
-//         console.log("You got it wrong!");
-//     }
-
-//     return highScore;
-// }
-
 var id = 0;
 // Go to the next question when Next button is clicked
 nextButton.addEventListener("click", function() {
@@ -280,7 +263,6 @@ nextButton.addEventListener("click", function() {
     console.log(id);
 });
 
-
 var highScore = 0;
 var displayQuestionAndAnswer = function(id) {
     // stop displaying welcome text
@@ -298,6 +280,7 @@ var displayQuestionAndAnswer = function(id) {
     answerButton3.innerText = questions[id].answers[2].answer;
     answerButton4.innerText = questions[id].answers[3].answer;
 
+    // iterating through answers to find if it is correct and adding points if it is
     var answers = document.querySelectorAll('.answer');
     answers.forEach(function(element, index) {
         element.addEventListener('click', function() {
@@ -305,6 +288,7 @@ var displayQuestionAndAnswer = function(id) {
                 highScore++;
                 console.log("Correct!");
             } else {
+                minutes--;
                 console.log("Wrong");
             }
         });
@@ -336,8 +320,6 @@ var displayHighScores = function() {
 
 var startTimer = function() {
     timeEl.style.display = "block";
-    var minutes = 9;
-    var seconds = 60;
     var timer = setInterval(function() {
         timeEl.innerHTML = `${minutes} minutes ${seconds} seconds`;
         seconds --;
