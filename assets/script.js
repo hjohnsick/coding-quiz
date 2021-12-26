@@ -16,6 +16,8 @@ var nextButton = document.getElementById("next");
 var formEl = document.querySelector("form");
 var submitButton = document.querySelector("#submit");
 var nameInput = document.querySelector("#name");
+var ul = document.getElementById("dynamic-list");
+var li = document.createElement("li");
 var minutes = 9;
 var seconds = 60;
 
@@ -310,6 +312,15 @@ var gameOver = function () {
     event.preventDefault();
     localStorage.setItem("name", nameInput.value.trim())
     localStorage.setItem("score", score);
+    formEl.style.display = "none";
+    highScoresDiv.style.display = "block";
+    // get local storage item name
+    var name = localStorage.getItem("name");
+    // get local storage item score
+    var userScore = localStorage.getItem("score");
+    // set text to display
+    li.innerText = `Name: ${name} Score: ${userScore}`;
+    ul.appendChild(li);
   });
  
 };

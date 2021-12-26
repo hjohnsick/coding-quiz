@@ -49,3 +49,7 @@ button {
     font-weight: bold;
     margin: 10px;
 }
+
+#dynamic-list {
+    list-style-type: none;
+}
