@@ -13,7 +13,7 @@ var answerButton2 = document.getElementById("answer2");
 var answerButton3 = document.getElementById("answer3");
 var answerButton4 = document.getElementById("answer4");
 var nextButton = document.getElementById("next");
-var formEl = document.querySelector("form");
+var formEl = document.querySelector(".form");
 
 
 var questions = [
@@ -244,20 +244,23 @@ var goBack = function() {
     window.location.reload();
 }
 
-var answerQuestion = function(event) {
-    var highScore = 0;
-    var answerClicked = event.target;
-    var correct = answerClicked.dataset.correct;
-    if (correct) {
-        // add one to the score
-        highScore++;
-    } else {
-        // deduct one minute from the time
-        console.log("You got it wrong!");
-    }
+// var highScore = 0;
+// var answerQuestion = function(event) {
+//     debugger;
+//     var answerClicked = event.target;
+//     console.log(answerClicked);
+//     var correct = answerClicked.dataset.correct;
+//     if (correct) {
+//         // add one to the score
+//         console.log("you got it correct");
+//         highScore++;
+//     } else {
+//         // deduct one minute from the time
+//         console.log("You got it wrong!");
+//     }
 
-    return highScore;
-}
+//     return highScore;
+// }
 
 var id = 0;
 // Go to the next question when Next button is clicked
@@ -277,6 +280,8 @@ nextButton.addEventListener("click", function() {
     console.log(id);
 });
 
+
+var highScore = 0;
 var displayQuestionAndAnswer = function(id) {
     // stop displaying welcome text
     welcomeDiv.style.display = "none";
@@ -292,7 +297,20 @@ var displayQuestionAndAnswer = function(id) {
     answerButton2.innerText = questions[id].answers[1].answer;
     answerButton3.innerText = questions[id].answers[2].answer;
     answerButton4.innerText = questions[id].answers[3].answer;
-    
+
+    var answers = document.querySelectorAll('.answer');
+    answers.forEach(function(element, index) {
+        element.addEventListener('click', function() {
+            if (questions[id].answers[index].correct) {
+                highScore++;
+                console.log("Correct!");
+            } else {
+                console.log("Wrong");
+            }
+        });
+    });
+
+    return highScore;
 }
 
 var gameOver = function() {
