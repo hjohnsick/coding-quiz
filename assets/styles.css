@@ -28,13 +28,6 @@ span:hover {
 .hidden {
     display: none;
 }
-/* #timer{
-    display: none;
-}
-
-#high-scores {
-    display: none;
-} */
 
 h1 {
     font-family: 'Montserrat', sans-serif;
@@ -47,11 +40,12 @@ h1 {
     padding-bottom: 20px;
 }
 
-button:hover {
+#next:hover {
     background-color: #DAF7A6;
 }
 
 button {
     border-radius: 5px;
     font-weight: bold;
+    margin: 10px;
 }
