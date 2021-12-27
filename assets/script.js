@@ -255,6 +255,12 @@ var goBack = function () {
 var id = 0;
 var score = 0;
 var displayQuestionAndAnswer = function (id) {
+  // check if time has run out and if so end game
+
+  if (minutes <= 0 && seconds <= 0) {
+    timeEl.innerHTML = "Time's up!";
+    gameOver();
+  }
   // stop displaying welcome text
   welcomeDiv.style.display = "none";
 
@@ -284,14 +290,13 @@ var displayQuestionAndAnswer = function (id) {
           console.log("Wrong");
         }
         id++;
-        displayQuestionAndAnswer(id);
+        return displayQuestionAndAnswer(id);
       } else {
         gameOver();
       }
     });
   });
 
-  return score;
 };
 
 var gameOver = function () {
@@ -305,13 +310,12 @@ var gameOver = function () {
   backButton.style.display = "none";
 
   // add click event to submit form and display results
-  submitButton.addEventListener("click", function(event) {
+  submitButton.addEventListener("click", function (event) {
     event.preventDefault();
-    localStorage.setItem("name", nameInput.value.trim())
+    localStorage.setItem("name", nameInput.value.trim());
     localStorage.setItem("score", score);
     displayHighScores();
   });
- 
 };
 
 var displayHighScores = function () {
@@ -328,8 +332,13 @@ var displayHighScores = function () {
   // get local storage item score
   var userScore = localStorage.getItem("score");
   // set text to display
-  li.innerText = `Name: ${name} Score: ${userScore}`;
-  ul.appendChild(li);
+  if (!name && !userScore) {
+    li.innerText = `There are currently no high scores!`;
+    ul.appendChild(li);
+  } else {
+    li.innerText = `Name: ${name} Score: ${userScore}`;
+    ul.appendChild(li);
+  }
 };
 
 var startTimer = function () {
