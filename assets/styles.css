@@ -38,9 +38,10 @@ h1 {
     border-radius: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-top: 80px;
 }
 
-#next:hover {
+button:hover {
     background-color: #DAF7A6;
 }
 

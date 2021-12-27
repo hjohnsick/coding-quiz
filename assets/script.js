@@ -304,23 +304,12 @@ var gameOver = function () {
   formEl.style.display = "block";
   backButton.style.display = "none";
 
-  // have user enter name to save in high scores
-
-  
   // add click event to submit form and display results
   submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     localStorage.setItem("name", nameInput.value.trim())
     localStorage.setItem("score", score);
-    formEl.style.display = "none";
-    highScoresDiv.style.display = "block";
-    // get local storage item name
-    var name = localStorage.getItem("name");
-    // get local storage item score
-    var userScore = localStorage.getItem("score");
-    // set text to display
-    li.innerText = `Name: ${name} Score: ${userScore}`;
-    ul.appendChild(li);
+    displayHighScores();
   });
  
 };
@@ -330,8 +319,17 @@ var displayHighScores = function () {
   questionAndAnswersDiv.style.display = "none";
   welcomeDiv.style.display = "none";
   highScoresEl.style.display = "none";
+  formEl.style.display = "none";
   timeEl.style.display = "none";
   highScoresDiv.style.display = "block";
+  backButton.style.display = "block";
+  // get local storage item name
+  var name = localStorage.getItem("name");
+  // get local storage item score
+  var userScore = localStorage.getItem("score");
+  // set text to display
+  li.innerText = `Name: ${name} Score: ${userScore}`;
+  ul.appendChild(li);
 };
 
 var startTimer = function () {
